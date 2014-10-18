@@ -29,7 +29,17 @@ dataRaw      <- activityData
 
 1. Make a histogram of the total number of steps taken each day
 
+```{r}
+data <- dataFiltered 
+
+hist(data$steps, col="red", main="Steps per day" , xlab="steps taken");
+```
+
 2. Calculate and report the mean and median total number of steps taken per day
+
+```{r}
+c( mean(data$steps) , median(data$steps))
+```
 
 ## What is the average daily activity pattern?
 
