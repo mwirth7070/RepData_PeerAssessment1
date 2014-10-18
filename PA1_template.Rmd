@@ -2,8 +2,27 @@
 
 1. Load the data (i.e. read.csv())
 
+```{r}
+activityData <- read.csv(file="activity.csv");
+
+head(activityData);
+```
+
 2. Process/transform the data (if necessary) into a format suitable for your analysis
 
+
+```{r}
+
+lapply(activityData, class)
+
+activityData$date <- as.Date(activityData$date)
+
+class(activityData$date)
+
+dataFiltered <- activityData[!is.na(activityData$steps),]
+dataRaw      <- activityData
+
+```
 
 ## What is mean total number of steps taken per day?
 
