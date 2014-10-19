@@ -4,8 +4,6 @@
 
 ```{r}
 activityData <- read.csv(file="activity.csv");
-
-head(activityData);
 ```
 
 2) Process/transform the data (if necessary) into a format suitable for your analysis
