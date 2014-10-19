@@ -100,7 +100,6 @@ for (i in 1:nrow(intervalData) ) {
 ```{r}
 
 data <- filler
-
 ```
 
 4) Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
@@ -117,4 +116,26 @@ c( mean(data$steps) , median(data$steps))
 
 1) Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
 
+```{r}
+
+isWeekend <- function(x) {
+  if( x == "Sunday" || x == "Saturday") "weekend" else "weekday";
+}
+
+data$day <- weekdays(data$date)
+data$dayType <- lapply(data$day, isWeekend)
+
+data$dayType <- sapply(data$dayType, as.factor)
+
+print(lapply(data, class))
+```
+
 2) Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). 
+
+```{r}
+library("lattice")
+
+dayType <- data$dayType
+
+xyplot( steps~interval | dayType, data=data, type="l", layout=c(1,2))
+```
